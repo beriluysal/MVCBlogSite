@@ -1,0 +1,73 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList< MVCBlogSite.Models.Makale>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    
+
+<div class="col-md-8">
+    <br />
+    @foreach (var item in Model)
+    {
+
+
+
+        <article class="col-sm-12">
+            <h2>
+                <a href="/Home/MakaleDetay/@item.MakaleId">@item.Baslik</a>
+
+            </h2>
+            <p class="lead">
+                <img class="rounded-circle img-fluid" width="25" src="@Url.Content(item.Uye.Foto)" alt="@item.Uye.KullaniciAdi" /> <a href="/Uye/UyeProfil/@item.Uye.UyeId">@item.Uye.KullaniciAdi</a>
+            </p>
+            <p>
+                <span class="fas fa-clock"></span>@String.Format("{0: MMMM yyyy}", item.Tarih)
+            </p>
+            <hr>
+
+            <img class="img-fluid" src="@Url.Content(@item.Foto)" alt="@item.Baslik" />
+            <hr>
+
+            @if (item.Icerik.Length > 150)
+            {
+                <p>
+                    @Html.Raw(item.Icerik.Substring(0, 150)) ...
+                </p>
+            }
+            else
+            {
+                <p>@Html.Raw(item.Icerik) ...</p>
+            }
+
+            <hr />
+            <a class="btn btn-primary" href="/Home/MakaleDetay/ @item.MakaleId">Devamını Oku <span class="fas fa-chevron-right"></span></a>
+            <hr>
+
+        </article>
+
+    }
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <div class="pagedList pagination">
+                @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }), PagedList.Mvc.PagedListRenderOptions.Classic)
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+</div>
+

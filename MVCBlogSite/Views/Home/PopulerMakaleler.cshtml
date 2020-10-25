@@ -1,0 +1,87 @@
+﻿@model IEnumerable<MVCBlogSite.Models.Makale>
+@{
+    Layout = null;
+}
+<div class="card my-4">
+    <h5 class="card-header">Popüler Makaleler</h5>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li><a href="/Home/MakaleDetay/@item.MakaleId"> @item.Baslik </a>(@item.Okunma)</li>
+                }
+            </ul>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Kategori.KategoriAdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Uye.KullaniciAdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Baslik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icerik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tarih)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Okunma)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kategori.KategoriAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uye.KullaniciAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Baslik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Icerik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Foto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tarih)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Okunma)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.MakaleId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.MakaleId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.MakaleId })
+            </td>
+        </tr>
+    }
+
+    </table>*@

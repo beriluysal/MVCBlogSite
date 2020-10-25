@@ -1,0 +1,82 @@
+﻿@model IPagedList<MVCBlogSite.Models.Makale>
+@using PagedList
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="col-md-8">
+    <br />
+    <h2>Makaleler</h2>
+
+    <p>
+        @Html.ActionLink("Yeni Makale", "Create")
+    </p>
+</div>
+    <table class="table">
+
+        <tr>
+            <th>
+                @Html.Label("Kategori Adı")
+            </th>
+            <th>
+                @Html.Label("Başlık")
+            </th>
+
+            <th>
+                @Html.Label("Foto")
+            </th>
+            <th>
+                @Html.Label("Tarih")
+            </th>
+            <th>
+                @Html.Label("Okunma")
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kategori.KategoriAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Baslik)
+                </td>
+
+                <td>
+                    <img class="rounded" width="75" src="@Url.Content(@item.Foto)" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tarih)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Okunma)
+                </td>
+                <td>
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.MakaleId }) | @Html.ActionLink("Detaylar", "Details", new { id = item.MakaleId }) | @Html.ActionLink("Sil", "Delete", new { id = item.MakaleId })
+
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+<div class="row">
+    <div class="col-md-8 text-center">
+        <div class="pagedList pagination">
+            @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }), PagedList.Mvc.PagedListRenderOptions.Classic)
+        </div>
+
+
+
+
+    </div>
+
+
+</div>
